@@ -1,0 +1,18 @@
+ShipaPool: oke
+Resources:
+   General:
+      Setup:
+         Force: true
+         Default: false
+         Public: false
+         Provisioner: kubernetes
+      Plan:
+         Name: k8s
+      AppQuota:
+         Limit: 8
+      Security:
+         Disable-Scan: false
+         Scan-Platform-Layers: false
+      Access:
+         Append:
+            - admin
