@@ -1,0 +1,63 @@
+ShipaPool: pool-name
+Resources:
+  General:
+    Setup:
+      Force: true
+      Default: true
+      Public: true
+      Provisioner: kubernetes/shipa
+      KubeNamespace: some-namespace
+    Plan:
+      Name: plan1
+    Security:
+      Disable-Scan: true
+      Scan-Platform-Layers: true
+      Ignore-Components:
+        - busybody
+        - bash
+      Ignore-CVES:
+        - CVE-xxxx-xxxx
+        - CVE-xxxx-xxxx
+    Access:
+      Append:
+        - team1
+        - team2
+        - teamX
+      Blacklist:
+        - team3
+        - teamN
+    Services:
+      Append:
+        - service1
+        - service2
+        - serviceX
+      Blacklist:
+        - service3
+        - serviceN
+    Volumes:
+      - Name: volume-x
+        TeamOwner: team1
+        Capacity: 1Gi
+        PlanName: vp1
+        AccessModes: ReadWriteOnce
+      - Name: volume-y
+        TeamOwner: team1
+        Capacity: 1Gi
+        PlanName: vp1
+        AccessModes: ReadWriteOnce
+      - Name: volume-z
+        TeamOwner: team1
+        Capacity: 1Gi
+        PlanName: vp1
+        AccessModes: ReadWriteOnce
+    AppQuota:
+      Limit: 3
+  ShipaNode:
+    Drivers:
+      - amazonec2
+      - google
+    AutoScale:
+      MaxContainer: 0
+      MaxMemory: 0
+      ScaleDown: 1.33
+      Rebalance: true
