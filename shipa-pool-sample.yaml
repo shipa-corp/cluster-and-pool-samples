@@ -1,0 +1,32 @@
+ShipaPool: poolx
+Resources:
+   General:
+      Setup:
+         Force: true
+         Default: false
+         Public: false
+         Provisioner: shipa
+      Plan:
+         Name: k8s
+      AppQuota:
+         Limit: 5
+      Security:
+         Disable-Scan: false
+         Scan-Platform-Layers: false
+         Ignore-Components:
+            - systemd
+         Ignore-CVES:
+            - CVE-2019-18276
+            - CVE-2016-2781
+            - CVE-2019-9169
+      Access:
+         Append:
+            - admin
+   ShipaNode:
+      Drivers:
+         - google
+      AutoScale:
+         MaxContainer: 10
+         MaxMemory: 0
+         ScaleDown: 1.33
+         Rebalance: true
